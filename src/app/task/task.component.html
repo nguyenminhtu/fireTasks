@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <form (submit)="addTask()">
+    	<div class="form-group">
+    		<input type="text" class="form-control input-lg" [(ngModel)]="newTask" name="newTask"  placeholder="What do you want todo..." required autofocus>
+    	</div>
+    	<button type="submit" class="btn btn-primary btn-block">Add</button>
+    </form>
+    <hr>
+
+    <div id="task">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <ul class="list-unstyled list-group">
+            <li class="list-group-item" *ngFor="let task of tasks" style="margin-bottom: 5px;">
+              <div class="row">
+                <div class="col-md-10 text-center">
+                  <input size="40" (keypress)="update($event)" class="pull-left" type="text" [(ngModel)]="editText" name="editText" style="border-radius: 4px;height: 29px;" *ngIf="appState == 'edit' && task.$key == activeKey" >
+                  <button class="btn default pull-right btn-sm" type="button" (click)="changeState('default')" *ngIf="appState == 'edit' && task.$key == activeKey">Cancel</button>
+                  <button class="btn btn-success pull-right btn-sm" type="button" (click)="updateTask($event)" *ngIf="appState == 'edit' && task.$key == activeKey">Save</button>
+                  <span [class.hide]="appState === 'edit' && task.$key === activeKey" class="pull-left" style="font-size: 18px;font-weight: bold;">{{task.text}}</span>
+                  <small [class.hide]="appState === 'edit' && task.$key === activeKey" class="pull-right"><i>{{task.created_at | date:'short'}}</i></small>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="col-md-2 text-right">
+                  <label [class.hide]="appState === 'edit' && task.$key === activeKey" (click)="showEdit(task)" style="padding: 5px 10px 5px 10px;cursor: pointer;" class="label label-warning"><i class="glyphicon glyphicon-edit"></i></label>
+                  <label (click)="removeTask(task.$key)" style="padding: 5px 10px 5px 10px;cursor: pointer;" class="label label-danger"><i class="glyphicon glyphicon-remove"></i></label>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

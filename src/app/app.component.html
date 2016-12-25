@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="cursor: pointer;">todoFirebase</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a routerLink="home" style="cursor: pointer;">Home</a></li>
+                <li><a routerLink="login" *ngIf="!(auth | async)" style="cursor: pointer;">Login</a></li>
+                <li><a routerLink="signup" *ngIf="!(auth | async)" style="cursor: pointer;">Register</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a *ngIf="auth | async">Hello {{emailUser}}</a></li>
+                <li><a *ngIf="auth | async" (click)="onLogout()" style="cursor: pointer;">Log out</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+<div class="container text-center">
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "auth1",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Nguyen Tu <tuunguyen2795@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/assets/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
